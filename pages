@@ -1,0 +1,14 @@
+from atlassian import Confluence
+
+confluence = Confluence(
+    url=#CONFLUENCE_URL,
+    username=#CONFLUENCE_LOGIN,
+    password=#CONFLUENCE_PASSWORD,
+    timeout=180,
+)
+
+engineering = confluence.get_space_content('#SPACE', depth="all", start=0, limit=500, content_type=None, expand="body.storage")
+pages = '#SPACE'.get('page').get('results')
+
+for page in pages:
+    print(page['title'])
